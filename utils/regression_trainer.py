@@ -149,8 +149,8 @@ class RegTrainer(Trainer):
         epoch_res = np.array(epoch_res)
         mse = np.sqrt(np.mean(np.square(epoch_res)))
         mae = np.mean(np.abs(epoch_res))
-        logging.info('Epoch {} Val, MSE: {:.2f} MAE: {:.2f}, Cost {:.1f} sec'
-                     .format(self.epoch, mse, mae, time.time()-epoch_start))
+        logging.info('Epoch {} Val, MSE: {:.2f} MAE: {:.2f}, Cost {:.1f} sec  (BEST_MAE：{:.2f}, BEST_MSE：{:.2f})'
+                     .format(self.epoch, mse, mae, time.time()-epoch_start, self.best_mae, self.best_mse))
 
         model_state_dic = self.model.state_dict()
         if (2.0 * mse + mae) < (2.0 * self.best_mse + self.best_mae):
