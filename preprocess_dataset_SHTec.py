@@ -59,9 +59,9 @@ def generate_data(im_path, mat_path):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Test ')
-    parser.add_argument('--origin-dir', default='/mnt/e/MyDocs/Code/Datasets/ShangHaiTech/ShanghaiTech/part_B_final',
+    parser.add_argument('--origin-dir', default='/mnt/e/MyDocs/Code/Datasets/ShangHaiTech/ShanghaiTech/part_A_final',
                         help='original data directory')
-    parser.add_argument('--data-dir', default='/mnt/e/MyDocs/Code/Datasets/ShangHaiTech/ShanghaiTech_Bayes',
+    parser.add_argument('--data-dir', default='/mnt/e/MyDocs/Code/Datasets/ShangHaiTech/SHHA_Bayes',
                         help='processed data directory')
     args = parser.parse_args()
     return args
