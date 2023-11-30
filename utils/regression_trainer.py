@@ -77,6 +77,7 @@ class RegTrainer(Trainer):
         self.save_list = Save_Handle(max_num=args.max_model_num)
         self.best_mae = np.inf
         self.best_mse = np.inf
+        self.best_epoch = np.inf
         self.best_count = 0
 
     def train(self):
@@ -149,13 +150,14 @@ class RegTrainer(Trainer):
         epoch_res = np.array(epoch_res)
         mse = np.sqrt(np.mean(np.square(epoch_res)))
         mae = np.mean(np.abs(epoch_res))
-        logging.info('Epoch {} Val, MSE: {:.2f} MAE: {:.2f}, Cost {:.1f} sec  (BEST_MAE：{:.2f}, BEST_MSE：{:.2f})'
-                     .format(self.epoch, mse, mae, time.time()-epoch_start, self.best_mae, self.best_mse))
+        logging.info('Epoch {} Val, MSE: {:.2f} MAE: {:.2f}, Cost {:.1f} sec  (BEST_MAE：{:.2f}, BEST_MSE：{:.2f}, BEST_EPOCH:{})'
+                     .format(self.epoch, mse, mae, time.time()-epoch_start, self.best_mae, self.best_mse, str(self.best_epoch)))
 
         model_state_dic = self.model.state_dict()
         if (2.0 * mse + mae) < (2.0 * self.best_mse + self.best_mae):
             self.best_mse = mse
             self.best_mae = mae
+            self.best_epoch = self.epoch
             logging.info("save best mse {:.2f} mae {:.2f} model epoch {}".format(self.best_mse,
                                                                                  self.best_mae,
                                                                                  self.epoch))

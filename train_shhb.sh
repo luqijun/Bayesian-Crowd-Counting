@@ -1,1 +1,1 @@
-python train.py --data-dir ./data/ShanghaiTech_Bayes --save-dir ./results --batch-size 16 --val-start 600 --num-workers 16
+python train.py --data-dir ./data/SHHB_Bayes --save-dir ./results --batch-size 16 --val-start 600 --num-workers 8
